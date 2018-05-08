@@ -19,14 +19,52 @@ task hello{
 // }
 
 
-task map<<{
-	def map1=['width':1000,'height':200]
-	println map1.getClass().name
+// task map<<{
+// 	def map1=['width':1000,'height':200]
+// 	println map1.getClass().name
 
-	println map1.width
-	println map1['height']
+// 	println map1.width
+// 	println map1['height']
 
-	map1.each{
-		println "Key:${it.key},Value:${it.value}"
-	}
+// 	map1.each{
+// 		println "Key:${it.key},Value:${it.value}"
+// 	}
+// }
+
+
+task invokeMethod<<{
+		add(1,2)
+	 	add 4,8
 }
+
+def add(int a ,int b){
+	println a+b
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
