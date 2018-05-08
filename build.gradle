@@ -62,37 +62,54 @@ task hello{
 
 
 
-task helloJavaBean<<{
+// task helloJavaBean<<{
 
-	Person p =new Person()
-	printlnMethod "初始化名字是 : ${p.name}"
-	p.name="MTH"
-	printlnMethod "新名字是 : ${p.name}"
+// 	Person p =new Person()
+// 	printlnMethod "初始化名字是 : ${p.name}"
+// 	p.name="MTH"
+// 	printlnMethod "新名字是 : ${p.name}"
 
-	printlnMethod "年龄是 : ${p.age}"
+// 	printlnMethod "年龄是 : ${p.age}"
 
-	p.age=100
-	printlnMethod "新年龄是 : ${p.age}"
+// 	p.age=100
+// 	printlnMethod "新年龄是 : ${p.age}"
+
+// }
+
+
+// class Person{
+// 	private String name
+// 	private int age =12
+
+// 	public int getAge(){
+// 		age
+// 	}
+
+// 	public void setAge(int newAge){
+// 		age = newAge
+// 	}
+// }
+
+
+task  helloClosure<<{
+
+	customEach{
+		printlnMethod it
+	}
+}
+
+
+def customEach(closure){
+
+	for(int i in 1..10)
+		{
+			closure(i)
+		}
 
 }
 
 
-class Person{
-	private String name
-	private int age =12
-
-	public int getAge(){
-		age
-	}
-
-	public void setAge(int newAge){
-		age = newAge
-	}
-}
-
-
-
-def printlnMethod(String str){
+def printlnMethod(def str){
 	println "${str}"
 }
 
