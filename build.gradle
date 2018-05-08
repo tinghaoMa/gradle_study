@@ -6,16 +6,27 @@ task hello{
 	// println "111111---${str1}--"+str1.getClass().name
 }
 
-task list{
-	def numlist=[1,2,3,4,5]
-	println numlist.getClass().name
-	println numlist[0..3]
+// task list{
+// 	def numlist=[1,2,3,4,5]
+// 	println numlist.getClass().name
+// 	println numlist[0..3]
 
-	
-	numlist.each{
-		println it
+
+// 	numlist.each{
+// 		println it
+// 	}
+
+// }
+
+
+task map<<{
+	def map1=['width':1000,'height':200]
+	println map1.getClass().name
+
+	println map1.width
+	println map1['height']
+
+	map1.each{
+		println "Key:${it.key},Value:${it.value}"
 	}
-
 }
-
-
