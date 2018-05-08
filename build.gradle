@@ -42,23 +42,76 @@ task hello{
 // }
 
 
-task printlnMethodReturn{
+// task printlnMethodReturn{
 
-	doLast{
-		def result1 = comparing 3, 4
-		def result2 = comparing (11,22)
-	    println "result1:${result1} result2:${result2}"
-	}
+// 	doLast{
+// 		def result1 = comparing 3, 4
+// 		def result2 = comparing (11,22)
+// 	    println "result1:${result1} result2:${result2}"
+// 	}
 
+// }
+
+// def comparing(int a , int b ){
+// 	if(a>b){
+// 		a
+// 	}else{
+// 		b
+// 	}
+// }
+
+
+
+task helloJavaBean<<{
+
+	Person p =new Person()
+	printlnMethod "名字是 : ${p.name}"
+	p.name="MTH"
+	printlnMethod "新名字是 : ${p.name}"
 }
 
-def comparing(int a , int b ){
-	if(a>b){
-		a
-	}else{
-		b
-	}
+
+class Person{
+	private String name
 }
+
+
+
+def printlnMethod(String str){
+	println "${str}"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
