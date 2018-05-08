@@ -32,14 +32,59 @@ task hello{
 // }
 
 
-task invokeMethod<<{
-		add(1,2)
-	 	add 4,8
+// task invokeMethod<<{
+// 		add(1,2)
+// 	 	add 4,8
+// }
+
+// def add(int a ,int b){
+// 	println a+b
+// }
+
+
+task printlnMethodReturn{
+
+	doLast{
+		def result1 = comparing 3, 4
+		def result2 = comparing (11,22)
+	    println "result1:${result1} result2:${result2}"
+	}
+
 }
 
-def add(int a ,int b){
-	println a+b
+def comparing(int a , int b ){
+	if(a>b){
+		a
+	}else{
+		b
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
