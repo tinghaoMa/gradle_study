@@ -91,22 +91,40 @@ task hello{
 // }
 
 
-task  helloClosure<<{
+// task  helloClosure{
+// 	//当闭包有一个参数的时候就默认是it
+// 	customEach{
+// 		printlnMethod it
+// 	}
+// }
 
-	customEach{
-		printlnMethod it
+
+// def customEach(closure){
+
+// 	for(int i in 1..10)
+// 		{
+// 			closure(i)
+// 		}
+
+// }
+
+
+task helloClosure{
+	eachMap{ k,v ->
+		printlnMethod "${k} is ${v}"
 	}
 }
 
 
-def customEach(closure){
+def eachMap(closure){
+	def map1=["name":"张三","age":18]
 
-	for(int i in 1..10)
-		{
-			closure(i)
-		}
-
+	map1.each{
+		closure(it.key,it.value)
+	}
 }
+
+
 
 
 def printlnMethod(def str){
