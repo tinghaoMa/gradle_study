@@ -1,7 +1,21 @@
 task hello{
+	// def str1="hello world"
+
+	// println str1
+
+	// println "111111---${str1}--"+str1.getClass().name
+}
+
+task list{
+	def numlist=[1,2,3,4,5]
+	println numlist.getClass().name
+	println numlist[0..3]
+
 	
-    doLast{
-        println'Hello World!'
-    }
+	numlist.each{
+		println it
+	}
 
 }
+
+
