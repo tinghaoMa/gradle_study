@@ -124,43 +124,64 @@
 // 	}
 // }
 
-task helloDelegate{
+// task helloDelegate{
 
-	new Delegate().test{
-		println "thisObject :${thisObject.getClass()}"
-		println "owner :${owner.getClass()}"
-		println "delegate :${delegate.getClass()}"
-		method1()
-		it.method1()
-	}
+// 	new Delegate().test{
+// 		println "thisObject :${thisObject.getClass()}"
+// 		println "owner :${owner.getClass()}"
+// 		println "delegate :${delegate.getClass()}"
+// 		method1()
+// 		it.method1()
+// 	}
+// }
+
+
+
+// def method1(){
+// 	printlnMethod "Context this :${this.getClass()} in root "
+// 	printlnMethod "method1 in root"
+// }
+
+
+
+// class Delegate{
+
+// 	def method1(){
+// 		println ("Delegate this : ${this.getClass()} in root")
+// 		println ("method1 in root")
+
+
+// 	}
+
+// 	def test (Closure<Delegate> closure){
+// 		closure(this)
+// 	}
+
+
+// }
+
+
+
+task configClosure {
+    person {
+        personName = "张三"
+        personAge = 20
+        dumpPerson()
+    }
 }
-
-
-
-def method1(){
-	printlnMethod "Context this :${this.getClass()} in root "
-	printlnMethod "method1 in root"
+class Person {
+    String personName   
+    int personAge
+    def dumpPerson(){
+        println "name is ${personName},age is ${personAge}"
+    }
 }
-
-
-
-class Delegate{
-
-	def method1(){
-		println ("Delegate this : ${this.getClass()} in root")
-		println ("method1 in root")
-	}
-
-	def test (Closure<Delegate> closure){
-		closure(this)
-	}
-
-
+def person(Closure<Person> closure){
+    Person p = new Person();
+    closure.delegate = p    //委托模式优先
+    closure.setResolveStrategy(Closure.DELEGATE_FIRST);
+    closure(p)
 }
-
-
-
-
 
 
 def printlnMethod(def str){
