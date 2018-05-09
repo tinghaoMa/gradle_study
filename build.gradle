@@ -1,10 +1,10 @@
-task hello{
-	// def str1="hello world"
+// task hello{
+// 	 def str1="hello world"
 
-	// println str1
+// 	 println str1
 
-	// println "111111---${str1}--"+str1.getClass().name
-}
+// 	 println "111111---${str1}--"+str1.getClass().name
+// }
 
 // task list{
 // 	def numlist=[1,2,3,4,5]
@@ -106,23 +106,59 @@ task hello{
 // 			closure(i)
 // 		}
 
+// }  
+
+
+// task helloClosure{
+// 	eachMap{ k,v ->
+// 		printlnMethod "${k} is ${v}"
+// 	}
 // }
 
 
-task helloClosure{
-	eachMap{ k,v ->
-		printlnMethod "${k} is ${v}"
+// def eachMap(closure){
+// 	def map1=["name":"张三","age":18]
+
+// 	map1.each{
+// 		closure(it.key,it.value)
+// 	}
+// }
+
+task helloDelegate{
+
+	new Delegate().test{
+		println "thisObject :${thisObject.getClass()}"
+		println "owner :${owner.getClass()}"
+		println "delegate :${delegate.getClass()}"
+		method1()
+		it.method1()
 	}
 }
 
 
-def eachMap(closure){
-	def map1=["name":"张三","age":18]
 
-	map1.each{
-		closure(it.key,it.value)
-	}
+def method1(){
+	printlnMethod "Context this :${this.getClass()} in root "
+	printlnMethod "method1 in root"
 }
+
+
+
+class Delegate{
+
+	def method1(){
+		println ("Delegate this : ${this.getClass()} in root")
+		println ("method1 in root")
+	}
+
+	def test (Closure<Delegate> closure){
+		closure(this)
+	}
+
+
+}
+
+
 
 
 
